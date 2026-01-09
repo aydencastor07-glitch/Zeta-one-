@@ -1,0 +1,8 @@
+{
+  "name": "Copy of Zeta - The Entrepreneur's Hub",
+  "description": "A high-end ebook storefront for creators and entrepreneurs, specializing in TikTok growth and monetization strategies.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}

@@ -25,8 +25,8 @@ This ebook is fully verified and trusted by experts. 🔥`,
   price: 1,
   rating: 5.0,
   reviewCount: 740,
-  // Using the exact final cover image provided
-  coverImage: 'https://i.ibb.co/VMPP2vVj/ebook-cover-final.png',
+  // Utilisation de l'image fournie par l'utilisateur (hébergée ou via data URI pour la persistance)
+  coverImage: 'https://i.ibb.co/jZ6MdfX6/tiktok-cover-final.png',
   features: [
     'No face required',
     'Works with or without showing your face',

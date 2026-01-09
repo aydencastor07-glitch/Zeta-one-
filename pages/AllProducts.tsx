@@ -2,6 +2,7 @@
 import React from 'react';
 import { PRIMARY_EBOOK, UPCOMING_EBOOK } from '../constants';
 import { AppRoute, Ebook } from '../types';
+import BookCover from '../components/BookCover';
 
 interface AllProductsProps {
   onNavigate: (route: AppRoute) => void;
@@ -49,30 +50,32 @@ const ProductCard: React.FC<{
       className={`flex flex-col items-center w-full max-w-[160px] sm:max-w-[240px] md:max-w-[300px] transition-all duration-500 ${isUpcoming ? 'opacity-80' : 'cursor-pointer hover:scale-[1.03]'}`}
       onClick={!isUpcoming ? onNavigate : undefined}
     >
-      {/* 1. Rating Area (Above and very close to cover) */}
+      {/* 1. Rating Area */}
       <RatingHeader ebook={ebook} isUpcoming={isUpcoming} />
 
-      {/* 2. Ebook Cover (Vertical Book Format) */}
-      <div className="relative w-full aspect-[2/3] rounded-md overflow-hidden border border-white/10 shadow-xl mb-4 group">
-        <div className="absolute top-0 left-0 w-[6%] h-full bg-slate-900/90 z-20 border-r border-white/5"></div>
-        <img 
-          src={ebook.coverImage} 
-          alt={ebook.title} 
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-        />
-        {isUpcoming && (
-          <div className="absolute inset-0 bg-slate-950/40 backdrop-blur-[1px] flex items-center justify-center z-30">
-            <span className="bg-white/10 border border-white/20 text-white text-[7px] md:text-[9px] font-black uppercase tracking-[0.2em] px-3 py-1.5 rounded-full backdrop-blur-md">
-              Coming Soon
-            </span>
+      {/* 2. Ebook Cover */}
+      <div className="relative w-full group mb-4">
+        {isUpcoming ? (
+          <div className="relative aspect-[2/3] rounded-md overflow-hidden border border-white/10 shadow-xl bg-slate-900">
+             <img src={ebook.coverImage} className="w-full h-full object-cover opacity-20" />
+             <div className="absolute inset-0 flex items-center justify-center">
+                <span className="bg-white/10 border border-white/20 text-white text-[7px] md:text-[9px] font-black uppercase tracking-[0.2em] px-3 py-1.5 rounded-full backdrop-blur-md">
+                  Coming Soon
+                </span>
+             </div>
           </div>
+        ) : (
+          <BookCover 
+            title={ebook.title} 
+            image={ebook.coverImage} 
+            className="group-hover:scale-105"
+          />
         )}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-transparent"></div>
       </div>
 
-      {/* 3. Title & Price (Below Cover) */}
+      {/* 3. Title & Price */}
       <div className="text-center space-y-1.5 px-2">
-        <h3 className={`text-sm md:text-lg font-black tracking-tight leading-tight ${isUpcoming ? 'text-slate-600' : 'text-white'}`}>
+        <h3 className={`text-sm md:text-lg font-black tracking-tight leading-tight uppercase ${isUpcoming ? 'text-slate-600' : 'text-white'}`}>
           {ebook.title}
         </h3>
         {!isUpcoming && (

@@ -24,6 +24,7 @@ export enum AppRoute {
   HOME = '/',
   BEST_EBOOK = '/best-ebook',
   ALL_EBOOKS = '/all-ebooks',
+  REVIEWS = '/reviews',
   WHO_WE_ARE = '/who-we-are',
   CHECKOUT = '/checkout',
   SUCCESS = '/congratulations'

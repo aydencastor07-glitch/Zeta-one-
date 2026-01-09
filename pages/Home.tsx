@@ -3,6 +3,7 @@ import React from 'react';
 import { PRIMARY_EBOOK, TOTAL_STUDENT_EARNINGS } from '../constants';
 import { AppRoute } from '../types';
 import CountdownTimer from '../components/CountdownTimer';
+import BookCover from '../components/BookCover';
 
 interface HomeProps {
   onNavigate: (route: AppRoute) => void;
@@ -31,15 +32,15 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
         <div className="flex flex-col items-center text-center relative z-10">
           
           {/* 1. Title (Top) */}
-          <div className="mb-2 px-4">
+          <div className="mb-4 px-4">
             <h1 className="text-4xl md:text-7xl font-black text-white tracking-tighter leading-[1.1] uppercase">
-              The TikTok <br />
-              <span className="gradient-text italic">Alpha Framework.</span>
+              FROM 0 TO $2,000 <br />
+              <span className="gradient-text italic">ON TIKTOK IN 30 DAYS.</span>
             </h1>
           </div>
 
-          {/* 2. Stars + Reviews (Tightly grouped under title) */}
-          <div className="flex flex-col items-center mb-6 space-y-2">
+          {/* 2. Stars + Reviews */}
+          <div className="flex flex-col items-center mb-10 space-y-2">
             <TrustpilotStars />
             <div className="text-slate-400 font-bold text-xs md:text-sm tracking-tight">
               <span className="text-white font-black">5.0/5.0</span> 
@@ -48,66 +49,65 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
             </div>
           </div>
 
-          {/* 3. Ebook Cover (Tightly grouped under stars) */}
-          <div className="relative group mb-10 w-[70%] sm:w-[55%] md:w-[280px] lg:w-[320px] perspective-1000">
-            <div className="absolute inset-0 bg-emerald-500/10 blur-[80px] rounded-full transform scale-125"></div>
-            <div className="relative aspect-[2/3] transform transition-all duration-1000 hover:rotate-y-3 hover:scale-[1.02] shadow-[0_50px_100px_rgba(0,0,0,0.8)] rounded-[4px] overflow-hidden border border-white/10">
-              <div className="absolute top-0 left-0 w-[5%] h-full bg-slate-900/90 z-20 border-r border-white/5"></div>
-              <img 
-                src={PRIMARY_EBOOK.coverImage} 
-                alt={PRIMARY_EBOOK.title} 
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent"></div>
-            </div>
+          {/* 3. High-Fidelity Ebook Cover Component */}
+          {/* Removed rotation and scaling effects to ensure image is presented 100% true to source */}
+          <div className="relative group mb-12 w-[85%] sm:w-[60%] md:w-[320px] lg:w-[360px]">
+            <div className="absolute inset-0 bg-emerald-500/20 blur-[100px] rounded-full transform scale-125"></div>
+            <BookCover 
+              title={PRIMARY_EBOOK.title}
+              image={PRIMARY_EBOOK.coverImage}
+              className="shadow-[0_50px_100px_rgba(0,0,0,0.9)]"
+            />
           </div>
 
-          {/* 4. Price Section (Below cover) */}
-          <div className="mb-4 flex flex-col items-center">
+          {/* 4. Price Section */}
+          <div className="mb-6 flex flex-col items-center">
              <div className="flex items-end space-x-4">
-                <span className="text-slate-600 line-through text-2xl font-bold mb-1">$99.00</span>
-                <span className="text-white font-black text-7xl tracking-tighter drop-shadow-xl">${PRIMARY_EBOOK.price}</span>
+                <span className="text-slate-600 line-through text-2xl font-bold mb-2">$99.00</span>
+                <span className="text-white font-black text-7xl md:text-8xl tracking-tighter drop-shadow-2xl">${PRIMARY_EBOOK.price}</span>
              </div>
-             <p className="text-emerald-400 text-[10px] font-black uppercase tracking-[0.2em] mt-2 opacity-80">
-                Exclusive Institutional Pricing
+             <p className="text-emerald-400 text-[10px] font-black uppercase tracking-[0.2em] mt-3 opacity-90">
+                Official Institutional Launch Price
              </p>
           </div>
 
-          {/* 5. Countdown Timer (Yellow, below price) */}
-          <div className="mb-12 w-full flex justify-center px-4">
+          {/* 5. Countdown Timer */}
+          <div className="mb-14 w-full flex justify-center px-4">
             <CountdownTimer />
           </div>
 
-          {/* 6. Description (Below countdown) */}
-          <div className="max-w-2xl w-full text-left bg-slate-900/40 border border-white/5 p-8 md:p-12 rounded-[2.5rem] mb-12 shadow-2xl backdrop-blur-md">
-            <div className="space-y-6 text-slate-300 font-bold text-sm md:text-base leading-relaxed">
+          {/* 6. Buy Button */}
+          <div className="w-full flex flex-col items-center mb-20 px-4">
+            <button 
+              onClick={() => onNavigate(AppRoute.BEST_EBOOK)}
+              className="w-full max-w-sm bg-white text-slate-950 hover:bg-emerald-50 font-black py-5 px-8 rounded-2xl text-xl uppercase tracking-[0.15em] transition-all shadow-[0_30px_60px_rgba(255,255,255,0.1)] active:scale-95 group flex items-center justify-center border-b-4 border-slate-200"
+            >
+              Get Instant Access
+              <span className="ml-4 group-hover:translate-x-1 transition-transform">→</span>
+            </button>
+            <div className="mt-8 flex items-center space-x-8 opacity-40 grayscale hover:grayscale-0 transition-all">
+               <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" className="h-4" />
+               <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" className="h-3" />
+               <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" className="h-4" />
+            </div>
+          </div>
+
+          {/* 7. Detailed Feature Block */}
+          <div className="max-w-3xl w-full text-left bg-slate-900/60 border border-white/10 p-10 md:p-14 rounded-[3rem] mb-24 shadow-2xl backdrop-blur-xl relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 via-blue-500 to-emerald-500"></div>
+            <h3 className="text-xs font-black text-slate-500 uppercase tracking-[0.4em] mb-10">System Architecture Overview</h3>
+            <div className="space-y-8 text-slate-200 font-bold text-base md:text-lg leading-relaxed">
               {PRIMARY_EBOOK.description.split('\n\n').map((paragraph, idx) => {
                 const isCheckmarkLine = paragraph.trim().startsWith('✔');
                 const content = paragraph.trim().replace(/^✔\s*/, '');
                 
                 return (
-                  <p key={idx} className="flex items-start space-x-3">
-                    {isCheckmarkLine ? <AnimatedCheckIcon /> : null}
+                  <p key={idx} className="flex items-start space-x-4">
+                    {isCheckmarkLine ? <AnimatedCheckIcon className="w-6 h-6" /> : null}
                     <span className="whitespace-pre-line flex-grow">{content}</span>
                   </p>
                 );
               })}
-            </div>
-          </div>
-
-          {/* 7. Buy Button (Elegant, Premium size) */}
-          <div className="w-full flex flex-col items-center mb-24 px-4">
-            <button 
-              onClick={() => onNavigate(AppRoute.BEST_EBOOK)}
-              className="w-full max-w-xs bg-white text-slate-950 hover:bg-emerald-50 font-black py-4 px-8 rounded-2xl text-lg uppercase tracking-[0.15em] transition-all shadow-[0_20px_40px_rgba(255,255,255,0.05)] active:scale-95 group flex items-center justify-center border-b-4 border-slate-200"
-            >
-              Buy This Ebook
-              <span className="ml-4 group-hover:translate-x-1 transition-transform">→</span>
-            </button>
-            <div className="mt-8 flex items-center space-x-6 opacity-30 grayscale hover:grayscale-0 transition-all">
-               <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" className="h-4" />
-               <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" className="h-3" />
-               <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" className="h-4" />
             </div>
           </div>
         </div>
@@ -115,16 +115,16 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
 
       {/* Social Proof Stats */}
       <section className="mt-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {[
             { label: "Community Revenue", val: `$${(TOTAL_STUDENT_EARNINGS/1000).toFixed(0)}k+` },
             { label: "Active Units", val: "740+" },
             { label: "Success Rate", val: "99.2%" },
             { label: "Technical Support", val: "24/7" }
           ].map((stat, i) => (
-            <div key={i} className="bg-slate-900/40 border border-white/5 p-6 rounded-[2rem] text-center">
-              <div className="text-2xl md:text-3xl font-black text-white mb-1 tracking-tighter">{stat.val}</div>
-              <div className="text-[9px] font-black text-slate-500 uppercase tracking-widest">{stat.label}</div>
+            <div key={i} className="bg-slate-900/40 border border-white/5 p-8 rounded-[2.5rem] text-center hover:border-emerald-500/20 transition-colors">
+              <div className="text-3xl md:text-4xl font-black text-white mb-1 tracking-tighter">{stat.val}</div>
+              <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest">{stat.label}</div>
             </div>
           ))}
         </div>

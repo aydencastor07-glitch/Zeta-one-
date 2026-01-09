@@ -5,8 +5,8 @@ export const TOTAL_STUDENT_EARNINGS = 600000;
 
 export const PRIMARY_EBOOK: Ebook = {
   id: 'tiktok-blueprint-001',
-  title: 'The TikTok Alpha Framework',
-  subtitle: 'Strategic Operational Architecture for Global Scale',
+  title: 'FROM 0 TO $2,000 ON TIKTOK IN 30 DAYS',
+  subtitle: 'The Definitive Monetization Protocol',
   description: `✔ Learn how to earn from $0 to $2000 in just 1 month on TikTok! 🚀
 
 ✔ Perfect for beginners — no need to show your face 😎
@@ -25,20 +25,20 @@ This ebook is fully verified and trusted by experts. 🔥`,
   price: 1,
   rating: 5.0,
   reviewCount: 740,
-  coverImage: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=800&auto=format&fit=crop',
+  // Using the exact final cover image provided
+  coverImage: 'https://i.ibb.co/VMPP2vVj/ebook-cover-final.png',
   features: [
-    '100% beginner-friendly eBook, no experience and no content creation required',
-    'Suitable for beginners and creators with some experience',
-    'Make money with TikTok, even if your country is not eligible for TikTok monetization',
-    'No face required – succeed without showing yourself',
-    'Facebook provides the monetization solution for users from non-eligible TikTok countries',
-    'Validated by 700+ beginners who earned their first thousands of dollars using TikTok'
+    'No face required',
+    'Works with or without showing your face',
+    'AI helps you create your videos',
+    'Easy to apply:',
+    'Trusted by 700+ people'
   ]
 };
 
 export const UPCOMING_EBOOK: Ebook = {
   id: 'youtube-blueprint-002',
-  title: 'Make Your First $1,000 with YouTube',
+  title: 'YouTube Alpha Systems',
   subtitle: 'Mastering the Algorithm for Rapid Monetization',
   description: 'The definitive guide to building a cash-flow positive YouTube channel from scratch. Operational protocols for viral growth and high-CPM niche selection.',
   price: 47,

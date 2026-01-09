@@ -11,9 +11,10 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentRoute }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
-    { label: 'Best Product', route: AppRoute.BEST_EBOOK },
-    { label: 'All Products', route: AppRoute.ALL_EBOOKS },
-    { label: 'Who We Are', route: AppRoute.WHO_WE_ARE },
+    { label: 'The Blueprint', route: AppRoute.BEST_EBOOK },
+    { label: 'Success Stories', route: AppRoute.REVIEWS },
+    { label: 'Full Catalog', route: AppRoute.ALL_EBOOKS },
+    { label: 'Our Mission', route: AppRoute.WHO_WE_ARE },
   ];
 
   return (
@@ -24,13 +25,11 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentRoute }) => {
             className="flex items-center cursor-pointer group"
             onClick={() => onNavigate(AppRoute.HOME)}
           >
-            {/* Professional Wealth & Growth Emblem */}
             <div className="relative mr-4">
               <div className="absolute inset-0 bg-emerald-500/20 blur-xl rounded-full group-hover:bg-emerald-500/30 transition-all"></div>
               <div className="relative w-12 h-12 bg-slate-900 border-2 border-white/10 rounded-2xl flex items-center justify-center shadow-2xl transform transition-transform group-hover:scale-105 group-hover:border-emerald-500/50 overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent"></div>
                 <svg className="w-8 h-8 text-white relative z-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  {/* The 'Z' with a Growth Arrow integrated */}
                   <path d="M5 7H19L5 17H19" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-20" />
                   <path d="M5 17L19 7" stroke="url(#logo-gradient)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
                   <path d="M19 7L19 13M19 7L13 7" stroke="url(#logo-gradient)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
@@ -56,29 +55,31 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentRoute }) => {
             </div>
           </div>
 
-          {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <button
                 key={item.label}
                 onClick={() => onNavigate(item.route)}
-                className={`text-[10px] font-black uppercase tracking-[0.25em] transition-all hover:text-emerald-400 ${
+                className={`text-[10px] font-black uppercase tracking-[0.25em] transition-all hover:text-emerald-400 relative group/item ${
                   currentRoute === item.route ? 'text-emerald-500' : 'text-slate-400'
                 }`}
               >
                 {item.label}
+                {currentRoute === item.route && (
+                  <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-emerald-500 rounded-full"></span>
+                )}
               </button>
             ))}
             
             <button 
               onClick={() => onNavigate(AppRoute.BEST_EBOOK)}
-              className="bg-emerald-600 text-white px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all shadow-xl shadow-emerald-600/20 hover:bg-emerald-500 active:scale-95"
+              className="relative group bg-emerald-600 text-white px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all shadow-xl shadow-emerald-600/20 hover:bg-emerald-500 active:scale-95 border border-white/10 overflow-hidden"
             >
+              <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-700 skew-x-12"></div>
               Get The Framework
             </button>
           </div>
 
-          {/* Mobile Toggle */}
           <div className="md:hidden flex items-center">
             <button onClick={() => setIsOpen(!isOpen)} className="text-slate-300 p-2">
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -89,15 +90,14 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentRoute }) => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-slate-900 border-b border-slate-800 p-6 space-y-4 animate-in slide-in-from-top duration-300">
+        <div className="md:hidden bg-slate-950 border-b border-slate-900 p-6 space-y-4 animate-in slide-in-from-top duration-300 shadow-2xl">
           {navItems.map((item) => (
             <button
               key={item.label}
               onClick={() => { onNavigate(item.route); setIsOpen(false); }}
               className={`block w-full text-left px-4 py-3 rounded-xl text-xs font-black uppercase tracking-widest ${
-                currentRoute === item.route ? 'bg-emerald-500/10 text-emerald-400' : 'text-slate-300'
+                currentRoute === item.route ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'text-slate-300'
               }`}
             >
               {item.label}
@@ -106,9 +106,9 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentRoute }) => {
           <div className="pt-4 border-t border-white/5 space-y-2">
             <button 
               onClick={() => { onNavigate(AppRoute.BEST_EBOOK); setIsOpen(false); }}
-              className="w-full bg-emerald-600 text-white py-4 rounded-xl font-black text-xs uppercase tracking-widest"
+              className="w-full bg-emerald-600 text-white py-4 rounded-xl font-black text-xs uppercase tracking-widest shadow-lg shadow-emerald-600/20"
             >
-              Buy Framework
+              Get The Framework
             </button>
           </div>
         </div>

@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { PRIMARY_EBOOK, REVIEWS } from '../constants';
 import CountdownTimer from '../components/CountdownTimer';
+import BookCover from '../components/BookCover';
 
 interface ProductDetailProps {
   onBuy: () => void;
@@ -78,10 +79,11 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ onBuy }) => {
             {/* 3. Cover (Tightly grouped) */}
             <div className="relative group w-[75%] sm:w-[55%] lg:w-full max-w-[340px] mb-8 perspective-1000">
               <div className="absolute inset-0 bg-emerald-500/10 blur-[80px] rounded-full transform scale-125"></div>
-              <div className="relative aspect-[2/3] transform transition-all duration-700 hover:rotate-y-3 shadow-[0_50px_100px_rgba(0,0,0,0.8)] rounded-[4px] overflow-hidden border border-white/10">
-                <div className="absolute top-0 left-0 w-[4%] h-full bg-slate-900/90 z-20 border-r border-white/5"></div>
-                <img src={PRIMARY_EBOOK.coverImage} alt={PRIMARY_EBOOK.title} className="w-full h-full object-cover" />
-              </div>
+              <BookCover 
+                title={PRIMARY_EBOOK.title}
+                image={PRIMARY_EBOOK.coverImage}
+                className="hover:rotate-y-3"
+              />
             </div>
 
             {/* 4. Price (Clean, bigger) */}
